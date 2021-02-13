@@ -39,3 +39,9 @@ def home():
 @login_required
 def dashboard():
     return render_template('dashboard.html')
+
+
+@app.route('/update_user/')
+@login_required
+def update_user():
+    return render_template('update_user.html')

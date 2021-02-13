@@ -39,3 +39,24 @@ $("form[name=login_form]").submit(function(e){
     });
     e.preventDefault();
 })
+
+$("form[name=update_user]").submit(function(e){
+
+    var $form = $(this);
+    var $error = $form.find(".error");
+    var data = $form.serialize();
+
+    $.ajax({
+        url: "/update_user/",
+        type: "POST",
+        data: data,
+        dataType: "json",
+        success: function(resp) {
+            window.location.href = "/dashboard/";
+        },
+        error: function(resp) {
+            $error.text(resp.responseJSON.error).removeClass("error--hidden");
+        }
+    });
+    e.preventDefault();
+})
