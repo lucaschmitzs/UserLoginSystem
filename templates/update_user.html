@@ -3,7 +3,6 @@
 {% block content %}
 
 <div class="card-wrapper">
-
     <div class="card">
         <h1 class="center">Update your info</h1>
         <form name="update_user">
@@ -22,10 +21,12 @@
             <p class="error error--hidden"></p>
 
             <input type="submit" value="Update" class="btn">
-            <a class="btn" href="{{ url_for('home') }}">Voltar</a>
         </form>
-    </div>
+        <div class="center">
+            <a class="btn btn--secondary" href="{{ url_for('home') }}">Voltar</a>
+        </div>
 
+    </div>
 </div>
 
 {% endblock %}
