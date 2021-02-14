@@ -50,4 +50,33 @@ class User:
         return jsonify({"error": "Invalid login credentials"}), 401
 
     def update(self):
-        db.users.find_one_and_update({"username": session['user']['username']})
+        user_loggedin = db.users.find_one({
+            "username": session['user']['username']
+        })
+
+        updated_user = {
+            "name": request.form.get('name'),
+            "username": request.form.get('username'),
+            "email": request.form.get('email'),
+            "password": request.form.get('password')
+        }
+
+        # Encrypt the password
+        updated_user['password'] = pbkdf2_sha256.encrypt(
+            updated_user['password'])
+
+
+        if user_loggedin['email'] != updated_user['email']:
+            if db.users.find_one({"email": updated_user['email']}):
+                return jsonify({"error": "Email already in use"}), 400
+        if user_loggedin['username'] != updated_user['username']:
+            if db.users.find_one({"username": updated_user['username']}):
+                return jsonify({"error": "Username already in use"}), 400
+
+        if db.users.find_one_and_update({"username": user_loggedin['username']},
+                                     {'$set': {'name': updated_user['name'],
+                                               'username': updated_user['username'],
+                                               'email': updated_user['email']}}):
+            return self.start_session(updated_user)
+
+        return jsonify({"error": "Update info not ok"}), 401

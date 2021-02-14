@@ -7,13 +7,13 @@
         <h1 class="center">Update your info</h1>
         <form name="update_user">
             <label for="name">Name</label>
-            <input type="text" name="name" class="field" required>
+            <input type="text" name="name" class="field"  value="{{ session['user']['name'] }}" required>
 
             <label for="name">Username</label>
-            <input type="text" name="username" class="field" required>
+            <input type="text" name="username" class="field" value="{{ session['user']['username'] }}" required>
 
             <label for="email">Email</label>
-            <input type="email" name="email" class="field" required>
+            <input type="email" name="email" class="field" value="{{ session['user']['email'] }}" required>
 
             <label for="password">Password</label>
             <input type="password" name="password" class="field" required>

@@ -17,6 +17,7 @@
             <strong>Username:</strong> {{ session['user']['username'] }}<br>
             <strong>Name:</strong> {{ session['user']['name'] }}<br>
             <strong>Email:</strong> {{ session['user']['email'] }}<br>
+            <br>
             <a class="btn" href="{{ url_for('update_user') }}">Update Info</a>
         </p>
     </div>

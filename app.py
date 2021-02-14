@@ -10,9 +10,8 @@ app.secret_key = os.urandom(16)
 client = pymongo.MongoClient('localhost', 27017)
 db = client.user_login_system
 
+
 # Decorators
-
-
 def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):

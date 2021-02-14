@@ -47,7 +47,7 @@ $("form[name=update_user]").submit(function(e){
     var data = $form.serialize();
 
     $.ajax({
-        url: "/update_user/",
+        url: "/user/update",
         type: "POST",
         data: data,
         dataType: "json",
